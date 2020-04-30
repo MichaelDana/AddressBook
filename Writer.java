@@ -1,3 +1,4 @@
+
 interface Writer {
-  void writeToDisk(String filename, AuditRecord newRecord);
+  void writeToDisk(String filename, RecordInterface newRecord);
 }
