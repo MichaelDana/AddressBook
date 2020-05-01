@@ -69,10 +69,11 @@ class AuditDatabase implements AuditDatabaseInterface
 		positions = mUsersToPositions.get(newRecord.getKey());
 		positions.add(mRecords.size() - 1);
     }
-    private void loadFile(HashMap<String, LinkedList<Integer>>
-						usersToPositions, 
-						ArrayList<AuditRecordInterface> records,
-						String auditFile) throws IOException
+    private void loadFile(HashMap<String, 
+    			LinkedList<Integer>> usersToPositions, 
+			ArrayList<AuditRecordInterface> records,
+			String auditFile)
+				throws IOException
     {
 		ObjectInputStream in = new ObjectInputStream(new FileInputStream(
 													auditFile));
