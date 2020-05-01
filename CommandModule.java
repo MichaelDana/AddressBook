@@ -6,9 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CommandModule {
-    Map<String, Function<List,Boolean>> commands;
+    Map<String, Function<List<String>,Boolean>> commands;
+    AddressBook addressBook;
 
     public CommandModule(){
+        addressBook = new AddressBook();
          commands = new HashMap<>();
 
         // Login
@@ -49,25 +51,37 @@ public class CommandModule {
         );
         //Add record
         commands.put("ADR", (args) -> {
-                System.out.println("Not implemented");
+                addressBook.ADR(Record.createRecordsFromArgs(args));
                 return false;
             }
         );
         //Delete Record
         commands.put("DER", (args) -> {
-                System.out.println("Not implemented");
+                addressBook.DER(args.get(0));
                 return false;
             }
         );
         //Edit Record
         commands.put("EDR", (args) -> {
+                // editedRecord = Record.createRecordsFromArgs(args);
                 System.out.println("Not implemented");
                 return false;
             }
         );
         //Read record
         commands.put("RER", (args) -> {
-                System.out.println("Not implemented");
+                if(args.size()==1){
+                    //reading full record
+                    Record r = addressBook.RER(args.get(0));
+                    //Print record out
+                    if(r!=null) {
+                        System.out.println(r.toString());
+                    } else {
+                        System.out.println("Reocrd not found.");
+                    }
+                } else {
+                    //Read field of record
+                }
                 return false;
             }
         );

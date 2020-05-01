@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch)",
+            "request": "launch",
+            "mainClass": "aba"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - aba",
+            "request": "launch",
+            "mainClass": "aba"
+        }
+    ]
+}

@@ -1,5 +1,6 @@
-
+import java.util.HashMap;
 public class AddressBook{
+	private static final int MAX_NUMBER_OF_RECORDS = 256;
 	private final HashMap<String,Record> records;
 	private int numberOfRecords;
 
@@ -12,7 +13,7 @@ public class AddressBook{
 	{   
 		if(numberOfRecords < MAX_NUMBER_OF_RECORDS)
         {	
-			records.put(Record.myId, record);
+			records.put(record.getId(), record);
 			numberOfRecords++;
 			System.out.println("RECORD ADDED");
 		}
@@ -25,14 +26,16 @@ public class AddressBook{
 			throw new RuntimeException("No more records to delete");
 		else
 			records.remove(recID);
+			numberOfRecords--;
 	}
 	public Record RER(String recID)
 	{
-			return new Record(records.get(recID));
+			return records.get(recID);
 	}
 	public void EDR(String recID)
 	{
-		records.put(Record.myId, record);
+		// records.put(Record.myId, record);
 
 	}
 
+}
