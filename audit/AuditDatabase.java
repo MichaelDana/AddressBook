@@ -70,13 +70,33 @@ class AuditDatabase implements AuditDatabaseInterface
 		positions.add(mRecords.size() - 1);
     }
     private void loadFile(HashMap<String, 
-    			LinkedList<Integer>> usersToPositions, 
-			ArrayList<AuditRecordInterface> records,
-			String auditFile)
-				throws IOException
+    					LinkedList<Integer>> usersToPositions, 
+						ArrayList<AuditRecordInterface> records,
+						String auditFile)
+						
     {
-		ObjectInputStream in = new ObjectInputStream(new FileInputStream(
+		ObjectInputStream in = null;
+		try
+		{
+			in = new ObjectInputStream(new FileInputStream(
 													auditFile));
-
+		
+		}
+		catch(IOException e)
+		{	System.out.println(e);
+		}
+		catch(ClassNotFoundException e)
+		{	System.out.println(e);
+		}
+		finally
+		{
+			try
+			{	in.close();
+			}
+			catch(IOException e)
+			{	System.out.println(e);
+				exit(1);
+			}
+		}
     }
 }
