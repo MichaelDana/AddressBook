@@ -80,7 +80,24 @@ class AuditDatabase implements AuditDatabaseInterface
 		{
 			in = new ObjectInputStream(new FileInputStream(
 													auditFile));
-		
+			int numberOfRecords = in.readInt();
+			LinkedList<Integer> positions;
+			for(int i = 0; i < numberOfRecords; i++)
+			{
+				AuditRecordInterface record = (AuditRecordInterface) in.readObject();
+				if(usersToPositions.containsKey(record.getKey()))
+				{
+					positions = usersToPositions.get(record.getKey());
+					positions.add(i);
+				}
+				else
+				{
+					positions = new LinkedList<>();
+					positions.add(i);
+					usersToPositions.put(record.getKey(), positions);
+				}		
+				records.add((AuditRecordInterface) in.readObject());	
+			}
 		}
 		catch(IOException e)
 		{	System.out.println(e);

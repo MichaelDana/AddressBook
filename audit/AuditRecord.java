@@ -1,12 +1,14 @@
 package audit;
 
-import java.util.LocalTime;
-import java.util.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDate;
+import audit.AuditRecordInterface;
 
-class AuditRecord implements AuditRecordInterface{
+class AuditRecord implements AuditRecordInterface
+{
     private LocalDate mDate;
     private LocalTime mTime;
-    private RecordType mType;
+    private AuditType mType;
     private String mUserID;
 	private String mCommand;
 
@@ -15,7 +17,7 @@ class AuditRecord implements AuditRecordInterface{
         mTime = other.mTime;
         mType = other.mType;
         mUserID = other.mUserID;
-		mCommand = other.mCommand
+		mCommand = other.mCommand;
     }
 	public AuditRecord(AuditType type, String command, String userID)
 	{
