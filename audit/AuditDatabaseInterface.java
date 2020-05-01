@@ -1,3 +1,7 @@
+//package audit;
+
+//import AddressBook.UserInterface;
+//import audit.AuditRecordInterface;
 
 interface AuditDatabaseInterface {
     int MAX_ENTRIES = 512;
