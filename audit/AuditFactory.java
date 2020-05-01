@@ -1,10 +1,14 @@
 public class AuditFactory
 {
-	public AuditRecordInterface getAuditRecord(String userID,)
-	{	return new AuditRecord(
+	public static AuditRecordInterface getAuditRecord(AuditType type, 
+												String command
+												String userID,)
+	{	return new AuditRecord(type, String command, userID);
 	}
-	public AuditDatabaseInterface getAuditDatabase()
-	{	return new AuditDatabase()
+	public static AuditDatabaseInterface getAuditDatabase(String auditFile)
+	{	return new AuditDatabase(auditFile);
 	}
-	public get
+	public static AuditDatabaseInterface getAuditDatabase()
+	{	return new AuditDatabase();
+	}
 }
