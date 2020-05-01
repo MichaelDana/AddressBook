@@ -8,12 +8,14 @@ class AuditRecord implements AuditRecordInterface{
     private LocalTime mTime;
     private RecordType mType;
     private String mUserID;
+	private String mCommand;
 
     public AuditRecord(AuditRecord other) {
         mDate = other.mDate;
         mTime = other.mTime;
         mType = other.mType;
         mUserID = other.mUserID;
+		mCommand = other.mCommand
     }
 	public AuditRecord(AuditType type, String userID)
 	{

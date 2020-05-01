@@ -1,7 +1,7 @@
 public class AuditFactory
 {
-	public AuditRecordInterface getAuditRecord(String userID,)
-	{	return new AuditRecord(
+	public AuditRecordInterface getAuditRecord(AuditType type, String userID,)
+	{	return new AuditRecord(type, userID);
 	}
 	public AuditDatabaseInterface getAuditDatabase()
 	{	return new AuditDatabase()
