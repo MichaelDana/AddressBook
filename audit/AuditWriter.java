@@ -1,15 +1,14 @@
-//package audit;
-
 //import AddressBook.Writer;
 //import AddressBook.RecordInterface;
 import java.io.*;
 //import audit.AuditDatabaseInterface;
 
-class AuditWriter implements Writer 
+interface AuditWriterInterface extends Writer 
 {
+	public void writeToDisk
+
     public void writeToDisk(String auditFile, 
-							RecordInterface newRecord,
-							AuditDatabaseInterface database) 
+							RecordInterface newRecord) 
 							throws IOException
 	{
 		ObjectOutputStream out = new ObjectOutputStream(

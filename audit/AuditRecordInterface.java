@@ -1,5 +1,3 @@
-//package audit;
-
 interface AuditRecordInterface extends RecordInterface
 {
     enum AuditType 

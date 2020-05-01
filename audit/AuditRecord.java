@@ -1,5 +1,3 @@
-//package audit;
-
 import java.time.LocalTime;
 import java.time.LocalDate;
 //import audit.AuditRecordInterface;

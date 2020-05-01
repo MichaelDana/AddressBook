@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.io.*;
 
-class AuditDatabase implements AuditDatabaseInterface 
+class AuditDatabase implements AuditDatabaseInterface, Writer 
 {
     private HashMap<String, LinkedList<Integer>> mUsersToPositions;
     private ArrayList<AuditRecordInterface> mRecords;
@@ -68,6 +68,20 @@ class AuditDatabase implements AuditDatabaseInterface
 		mRecords.add(newRecord);
 		positions = mUsersToPositions.get(newRecord.getKey());
 		positions.add(mRecords.size() - 1);
+    }
+	public void writeToDisk(String auditFile, RecordInterface newRecord) 
+	{
+		try
+		{
+			ObjectOutputStream out = new ObjectOutputStream(
+										new FileOutputStream(auditFile));
+			out.writeInt(database.size())
+			out.writeObject(newRecord);
+		}
+		catch(IOException e)
+		{	System.out.println(e);
+		}
+		catch(IOException e
     }
     private void loadFile(HashMap<String, 
     					LinkedList<Integer>> usersToPositions, 

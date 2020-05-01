@@ -1,5 +1,3 @@
-//package audit;
-
 //import AddressBook.UserInterface;
 //import audit.AuditRecordInterface;
 
