@@ -4,23 +4,31 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+// import audit.*;
 
 public class CommandModule {
     Map<String, Function<List<String>,Boolean>> commands;
     AddressBook addressBook;
+    AuditDatabase auditDatabase;
+    // UserModule userModule;
 
     public CommandModule(){
         addressBook = new AddressBook();
-         commands = new HashMap<>();
+        // userModule = new UserModule();
+        // auditDatabase = new AuditDatabase();
+        commands = new HashMap<>();
 
         // Login
         commands.put("LIN", (args) -> {
+            // authenticator.login(getUser(username,pass))
             System.out.println("Not implemented");
             return false;
             }
         );
         //Logout 
         commands.put("LOU", (args) -> {
+            // authenticator.logout(user)
+            // addressBook.flush()
             System.out.println("Not implemented");
             return false;
             }
@@ -87,13 +95,19 @@ public class CommandModule {
         );
         //Import database
         commands.put("IMD", (args) -> {
-                System.out.println("Not implemented");
+                try {
+                    addressBook.importAddressBook(args.get(0));
+                } catch (Exception e) {
+                }
                 return false;
             }
         );
         //Export database
         commands.put("EXD", (args) -> {
-                System.out.println("Not implemented");
+            try {
+                addressBook.exportAddressBook(); 
+            } catch (Exception e) {
+            }
                 return false;
             }
         );
