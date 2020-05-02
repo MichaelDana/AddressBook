@@ -36,7 +36,7 @@ class AuditDatabase implements AuditDatabaseInterface
 		 */
 
         
-        if(authenticator.isUserAuthenticated())
+        if(authenticator.isUserAuthen())
         {
             LinkedList<Integer> positions = mUsersToPositions.get(userID);
 			for(int i: positions)
@@ -51,7 +51,7 @@ class AuditDatabase implements AuditDatabaseInterface
     public void getAuditLog(AuthenticatorInterface authenticator)
     {
 		// See getAuditLog(activerUser, userID)
-        if(authenticator.isUserAuthenticated())
+        if(authenticator.isUserAuthen())
         {
 			for (AuditRecordInterface record: mRecords)
 				record.display();
@@ -72,8 +72,8 @@ class AuditDatabase implements AuditDatabaseInterface
 			firstRecord = null;	
 		}
 		else if(!mUsersToPositions.containsKey(newRecord.getKey()))
-			mUsersToPositions.put(newRecord.getKey(), new
-			LinkedList<Integer>());
+			mUsersToPositions.put(newRecord.getKey(), 
+								new LinkedList<Integer>());
 		mRecords.add(newRecord);
 		positions = mUsersToPositions.get(newRecord.getKey());
 		positions.add(mRecords.size() - 1);

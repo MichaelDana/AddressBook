@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class Authenticator{
+public class Authenticator implements AuthenticatorInterface{
 	private static final float timeoutTime = 300000;//5 min
 	private class LoggedInUser {
 		private User loggedInUser;

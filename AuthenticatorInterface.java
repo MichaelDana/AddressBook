@@ -1,6 +1,6 @@
 interface AuthenticatorInterface
 {
-	boolean isUserAuthenticated();
+	boolean isUserAuthen();
 	boolean login(User user);
 	void logout();
 	User getActiveUser(); 
