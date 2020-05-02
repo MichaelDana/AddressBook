@@ -92,7 +92,7 @@ public class UserModule{
                 }
         }
 
-        public void CHP(String password, String userId) throws RuntimeException
+        public boolean CHP(String password, String userId) throws RuntimeException
         {
                 if(!password.isEmpty() && !authenticator.getActiveUser().getPassword().equals(password)){
                         System.out.println("Failed to change password");
@@ -110,9 +110,11 @@ public class UserModule{
                                 if(verifyPassword(newPassword)){
                                         users.get(userId).setPassWord(newPassword);
                                         System.out.println("OK");
+                                        return true;
                                 }
                         }
                 }
+                return false;
         }
 
         public Boolean IUN(String UserID)

@@ -71,9 +71,46 @@ public class AddressBook{
 	{
 			return records.get(recID);
 	}
-	public void EDR(String recID)
+	public void EDR(String recID, Record updatedRecord)
 	{
-		// records.put(Record.myId, record);
+		if(records.get(recID) != null){
+			Record r = records.get(recID);
+			if(!updatedRecord.getSurname().isEmpty()){
+				r.setSurname(updatedRecord.getSurname());
+			}
+			if(!updatedRecord.getGivenName().isEmpty()){
+				r.setGivenName(updatedRecord.getGivenName());
+			}
+			if(!updatedRecord.getPersonalEmail().isEmpty()){
+				r.setPersonalEmail(updatedRecord.getPersonalEmail());
+			}
+			if(!updatedRecord.getWorkEmail().isEmpty()){
+				r.setWorkEmail(updatedRecord.getWorkEmail());
+			}
+			if(!updatedRecord.getPersonalPhone().isEmpty()){
+				r.setPersonalPhone(updatedRecord.getPersonalPhone());
+			}
+			if(!updatedRecord.getWorkPhone().isEmpty()){
+				r.setWorkPhone(updatedRecord.getWorkPhone());
+			}
+			if(!updatedRecord.getStreetAddress().isEmpty()){
+				r.setStreetAddress(updatedRecord.getStreetAddress());
+			}
+			if(!updatedRecord.getCity().isEmpty()){
+				r.setCity(updatedRecord.getCity());
+			}
+			if(!updatedRecord.getState().isEmpty()){
+				r.setState(updatedRecord.getState());
+			}
+			if(!updatedRecord.getCountry().isEmpty()){
+				r.setCountry(updatedRecord.getCountry());
+			}
+			if(!updatedRecord.getPostalCode().isEmpty()){
+				r.setPostalCode(updatedRecord.getPostalCode());
+			}
+		} else {
+			System.out.println("RecordID not found");
+		}
 
 	}
 
