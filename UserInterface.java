@@ -1,6 +1,6 @@
 interface UserInterface
 {
-	void setUserID(String userID);
-	String getUserID();
+	void setUserId(String userID);
+	String getUserId();
 	String getPassword(); 
 }

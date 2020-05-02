@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.io.*;
 
 class AuditDatabase implements AuditDatabaseInterface 
@@ -20,9 +21,9 @@ class AuditDatabase implements AuditDatabaseInterface
 	public AuditDatabase(String auditFile)
 	{	
 		this();
-		loadFromFile(auditFile, mUsersToPositions, mRecords);
+		loadFile(auditFile, mUsersToPositions, mRecords);
 	}
-    public void getAuditLog(Authenticator authenticator, 
+    public void getAuditLog(AuthenticatorInterface authenticator, 
                          	String userID)
     {
     
@@ -37,8 +38,7 @@ class AuditDatabase implements AuditDatabaseInterface
         
         if(authenticator.isUserAuthenticated())
         {
-            HashMap<String, LinkedList<Integer>> positions =
-			mUsersToPositions.get(userID);
+            LinkedList<Integer> positions = mUsersToPositions.get(userID);
 			for(int i: positions)
 				mRecords.get(i).display();
         }
@@ -48,10 +48,10 @@ class AuditDatabase implements AuditDatabaseInterface
 		}
     }
 
-    public void getAuditLog(Authenticator authenticator)
+    public void getAuditLog(AuthenticatorInterface authenticator)
     {
 		// See getAuditLog(activerUser, userID)
-        if(authenticator.isUserAthenticated())
+        if(authenticator.isUserAuthenticated())
         {
 			for (AuditRecordInterface record: mRecords)
 				record.display();
@@ -98,16 +98,16 @@ class AuditDatabase implements AuditDatabaseInterface
 		{
 			out = new ObjectOutputStream(new FileOutputStream(auditFile));
 			if(newRecord != null)
-				this.updateLog(newRecord);
+			{
+				AuditRecordInterface newAuditRecord = (AuditRecordInterface) newRecord;
+				this.updateLog(newAuditRecord);
+			}
 
 			out.writeInt(mRecords.size());
 			for(int i = 0; i < mRecords.size(); i++)
 				out.writeObject(mRecords.get(i));
 		}
 		catch(IOException e)
-		{	System.out.println(e);
-		}
-		catch(ClassNotFoundException e)
 		{	System.out.println(e);
 		}
 		finally
@@ -122,10 +122,9 @@ class AuditDatabase implements AuditDatabaseInterface
 			}
 		}
 	}
-    private void loadFile(HashMap<String, 
-    					LinkedList<Integer>> usersToPositions, 
-						ArrayList<AuditRecordInterface> records,
-						String auditFile)
+    private void loadFile(String auditFile,
+					HashMap<String, LinkedList<Integer>> usersToPositions, 
+					ArrayList<AuditRecordInterface> records)
 						
     {
 		ObjectInputStream in = null;
