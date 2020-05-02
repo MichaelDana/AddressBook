@@ -4,30 +4,60 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.*;
 // import audit.*;
 
 public class CommandModule {
-    Map<String, Function<List<String>,Boolean>> commands;
-    AddressBook addressBook;
-    AuditDatabase auditDatabase;
-    // UserModule userModule;
+    private static final Map<String, String> commandSyntaxMap = Stream.of(new Object[][] { 
+        { "LIN", "LIN <userID>" }, 
+        { "LOU", "LOU" }, 
+        { "CHP", "CHP <old password>" }, 
+        { "ADU", "ADU <userID>" }, 
+        { "DEU", "DEU <userID>" }, 
+        { "DAL", "DAL [<userID>]" }, 
+        { "ADR", "ADR <recordID> [<field1=value1> <field2=value2> ...]" }, 
+        { "DER", "DER <recordID>" }, 
+        { "EDR", "EDR <recordID><field1=value1> [<field2=value2> ...]" }, 
+        { "RER", "RER [<recordID>][<fieldname> ...]" }, 
+        { "IMD", "IMD <Input_File>" },
+        { "EXD", "EXD <Output_File>" },
+        { "HLP", "HLP [<command name>]"},
+        { "EXT", "EXT"},
+    }).collect(Collectors.toMap(data -> (String) data[0], data -> (String) data[1]));
+    String field;
+    private Map<String, Function<List<String>,Boolean>> commands;
+    private AddressBook addressBook;
+    private Authenticator authenticator;
+    private AuditDatabase auditDatabase;
+    UserModule userModule;
 
-    public CommandModule(){
-        addressBook = new AddressBook();
-        // userModule = new UserModule();
+    public CommandModule(AddressBook addressBook, Authenticator authenticator, UserModule userModule){
+        this.addressBook = addressBook;
+        this.authenticator = authenticator;
+        this.userModule = userModule;
         // auditDatabase = new AuditDatabase();
         commands = new HashMap<>();
 
         // Login
         commands.put("LIN", (args) -> {
-            // authenticator.login(getUser(username,pass))
-            System.out.println("Not implemented");
+            if(args.size() > 0){
+                User userAttemptingLogin = userModule.getUser(args.get(0));
+                if(!authenticator.login(userAttemptingLogin)){
+                    if(userAttemptingLogin != null && userAttemptingLogin.getPassword().isEmpty())
+                        System.out.print("This is the first time the account is being used. ");
+                } else {
+                    //Load users address book
+                }
+            } else {
+                System.out.println("Invalid use:");
+                commands.get("HLP").apply(new ArrayList(Arrays.asList("LIN")));
+            }
             return false;
             }
         );
         //Logout 
         commands.put("LOU", (args) -> {
-            // authenticator.logout(user)
+            authenticator.logout();
             // addressBook.flush()
             System.out.println("Not implemented");
             return false;
@@ -113,7 +143,19 @@ public class CommandModule {
         );
         //Help
         commands.put("HLP", (args) -> {
-                System.out.println("Not implemented");
+                if(args.size() > 0){
+                    String helpCommand = args.get(0);
+                    if(commandSyntaxMap.containsKey(helpCommand)){
+                        System.out.println(commandSyntaxMap.get(helpCommand));
+                    } else {
+                        System.out.println(helpCommand + " is not a supported command");
+                    }
+                    
+                } else {
+                    for (Map.Entry<String,String> command : commandSyntaxMap.entrySet()){
+                        System.out.println(command.getValue());
+                    } 
+                }
                 return false;
             }
         );
@@ -130,6 +172,11 @@ public class CommandModule {
         ArrayList<String> args = new ArrayList(Arrays.asList(fullCommand.split("\\s+")));
         if(args.size() > 0){ 
             command = args.remove(0);
+        }
+
+        //Verify User is authenticated
+        if(!command.equals("LIN")){
+            return authenticator.isUserAuthen();
         }
 
         if(commands.containsKey(command)){
