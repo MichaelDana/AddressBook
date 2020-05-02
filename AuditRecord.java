@@ -22,7 +22,7 @@ class AuditRecord implements AuditRecordInterface
 		mUserID = userID;
 	}
 	public void display()
-	{	System.out.println(mDate+" "+mTime+" "+mType+" "+mUserID);	
+	{	System.out.println(mDate+";"+mTime+";"+mType+";"+mUserID);	
 	}
 	public String getKey()
 	{	return mUserID;
