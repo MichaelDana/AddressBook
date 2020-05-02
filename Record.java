@@ -1,12 +1,10 @@
 
-
 import java.util.*;
 import java.util.HashMap;
+import java.util.stream.*;
 
-
-public class Record
-{
-	private String mySurname;  
+public class Record {
+	private String mySurname;
 	private String myGivenName;
 	private String myId;
 	private String myPersonalEmail;
@@ -18,11 +16,13 @@ public class Record
 	private String myState;
 	private String myCountry;
 	private String myPostalCode;
-		
-	public Record(String surname, String givenName, String id, String personalEmail, String workEmail, String personalPhone, String workPhone, String streetAddress, String city, String state, String country, String postalCode){
 
-		mySurname= surname;
-		myGivenName= givenName;
+	public Record(String surname, String givenName, String id, String personalEmail, String workEmail,
+			String personalPhone, String workPhone, String streetAddress, String city, String state, String country,
+			String postalCode) {
+
+		mySurname = surname;
+		myGivenName = givenName;
 		myId = id;
 		myPersonalEmail = personalEmail;
 		myWorkEmail = workEmail;
@@ -35,8 +35,8 @@ public class Record
 		myPostalCode = postalCode;
 	}
 
-	public static Record createRecordsFromArgs(List<String> args){
-		String mySurname = "";  
+	public static Record createRecordsFromArgs(List<String> args) {
+		String mySurname = "";
 		String myGivenName = "";
 		String myId = "";
 		String myPersonalEmail = "";
@@ -49,12 +49,18 @@ public class Record
 		String myCountry = "";
 		String myPostalCode = "";
 
-		//parse args
-		myId = args.remove(0);
-		for (String kvPair : args){
-			String field = kvPair.substring(0,kvPair.indexOf('='));
-			String value = kvPair.substring(kvPair.indexOf('=')+1);
-			switch(field){
+		// parse args
+		//must have id
+		if(args != null && args.size() > 0){
+			myId = args.remove(0);
+		} else {
+			return null;
+		}
+		for (String kvPair : args) {
+			if(kvPair.indexOf('=') > 0){
+				String field = kvPair.substring(0, kvPair.indexOf('='));
+				String value = kvPair.substring(kvPair.indexOf('=') + 1);
+				switch (field) {
 				case "SN":
 					mySurname = value;
 					break;
@@ -89,10 +95,12 @@ public class Record
 					myPostalCode = value;
 					break;
 				default:
-					//Invalid field
+					// Invalid field
+				}
 			}
 		}
-		return new Record(mySurname, myGivenName, myId, myPersonalEmail, myWorkEmail, myPersonalPhone, myWorkPhone, myStreetAddress, myCity, myState, myCountry, myPostalCode);
+		return new Record(mySurname, myGivenName, myId, myPersonalEmail, myWorkEmail, myPersonalPhone, myWorkPhone,
+				myStreetAddress, myCity, myState, myCountry, myPostalCode);
 	}
 
 	public String getSurname() {
@@ -191,21 +199,46 @@ public class Record
 		this.myPostalCode = myPostalCode;
 	}
 
-	public String toString(){
-		String recordStr = 
-		"----------------------\n" + 
-		"Name: " + this.myGivenName + " " + this.mySurname + "\n" +
-		"Personal Email: " + this.myPersonalEmail + "\n" +
-		"Work Email: " + this.myWorkEmail + "\n" + 
-		"Personal Phone: " + this.myPersonalPhone + "\n" +
-		"Work Phone: " + this.myWorkPhone + "\n" + 
-		"Address: " + this.myStreetAddress + "\n" +
-		"City: " + this.myCity + "\n" +
-		"State/Province: " + this.myState + "\n" +
-		"Country: " + this.myCountry + "\n" +
-		"Postal Code: " + this.myPostalCode + "\n" + 
-		"----------------------";
+	public String toString() {
+		String recordStr = "----------------------\n" + "Name: " + this.myGivenName + " " + this.mySurname + "\n"
+				+ "Personal Email: " + this.myPersonalEmail + "\n" + "Work Email: " + this.myWorkEmail + "\n"
+				+ "Personal Phone: " + this.myPersonalPhone + "\n" + "Work Phone: " + this.myWorkPhone + "\n"
+				+ "Address: " + this.myStreetAddress + "\n" + "City: " + this.myCity + "\n" + "State/Province: "
+				+ this.myState + "\n" + "Country: " + this.myCountry + "\n" + "Postal Code: " + this.myPostalCode + "\n"
+				+ "----------------------";
 		return recordStr;
 	}
 
+	public String toDbString() {
+		return myId + ";" + mySurname + ";" + myGivenName + ";" + myPersonalEmail + ";" + myWorkEmail + ";"
+				+ myPersonalPhone + ";" + myWorkPhone + ";" + myStreetAddress + ";" + myCity + ";" + myState + ";"
+				+ myCountry + ";" + myPostalCode + ";";
+	}
+
+	public static ArrayList<String> fromDbStringToArgsList(String dbString){
+		ArrayList<String> fields = new ArrayList(Arrays.asList(dbString.replaceAll(";"," ;").split(";")));
+		for(int i = 0; i < fields.size(); i++){
+			fields.set(i, fields.get(i).trim());
+		}
+		//Annotate args
+		Map<Integer, String> argAnnotations = Stream.of(new Object[][] { 
+			{ 1, "SN" }, 
+			{ 2, "GN" }, 
+			{ 3, "PEM" }, 
+			{ 4, "WEM" }, 
+			{ 5, "PPH" }, 
+			{ 6, "WPH" }, 
+			{ 7, "SA" }, 
+			{ 8, "CITY" }, 
+			{ 9, "STP" }, 
+			{ 10, "CTY" }, 
+			{ 11, "PC" }, 
+		}).collect(Collectors.toMap(data -> (Integer) data[0], data -> (String) data[1]));
+		String field;
+		for(int i = 1; i < 12; i++){
+			String annotation = argAnnotations.get(i) + "=";
+			fields.set(i, !(field = fields.get(i)).isEmpty() ? annotation+field : "");
+		}
+		return fields;
+	}
 }

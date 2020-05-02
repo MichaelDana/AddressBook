@@ -1,4 +1,7 @@
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.io.*;
 public class AddressBook{
 	private static final int MAX_NUMBER_OF_RECORDS = 256;
 	private final HashMap<String,Record> records;
@@ -17,6 +20,8 @@ public class AddressBook{
 			numberOfRecords++;
 			System.out.println("RECORD ADDED");
 		}
+		else if(record == null)
+			System.out.print("Failed to add record");
         else
 	       throw new RuntimeException("No more space for new records.");
 	}
@@ -36,6 +41,23 @@ public class AddressBook{
 	{
 		// records.put(Record.myId, record);
 
+	}
+
+	public int getNumberOfRecords(){
+		return this.numberOfRecords;
+	}
+
+	public void exportAddressBook() throws IOException{
+		//fix address book file
+		new AddressBookWriter().writeToDisk("user_address_book", numberOfRecords, records.entrySet().iterator());
+	}
+
+	public void importAddressBook(String fileName) throws IOException{
+		AddressBookWriter adw = new AddressBookWriter();
+		List<Record> newRecords = adw.readFromDisk(fileName);
+		for(Record newRecord:newRecords){
+			ADR(newRecord);
+		}
 	}
 
 }
