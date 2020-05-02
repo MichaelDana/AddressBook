@@ -35,7 +35,7 @@ public class CommandModule {
         this.addressBook = addressBook;
         this.authenticator = authenticator;
         this.userModule = userModule;
-        // auditDatabase = new AuditDatabase();
+        auditDatabase = AuditFactory.getAuditDatabase();
         commands = new HashMap<>();
 
         // Login
@@ -83,7 +83,10 @@ public class CommandModule {
         );
         //Display audit log
         commands.put("DAL", (args) -> {
-                System.out.println("Not implemented");
+				if(args.size() == 1)
+					auditDatabase.getAuditLog(authenticator, args.get(0));
+				else if(args.size() == 0)
+					auditDatabase.getAuditLog(authenticator);
                 return false;
             }
         );
