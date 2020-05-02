@@ -46,9 +46,12 @@ public class CommandModule {
                         System.out.print("This is the first time the account is being used. ");
                         userModule.CHP("", userAttemptingLogin.getUserId());
                         authenticator.authenticateUser(userAttemptingLogin);
-                    }
+                        auditDatabase.updateLog(AuditFactory.getAuditRecord(AuditRecordInterface.AuditType.L1, userAttemptingLogin.getUserId()));
+                    } 
+                    auditDatabase.updateLog(AuditFactory.getAuditRecord(AuditRecordInterface.AuditType.LF, ""));
                 } else {
                     //Load users address book
+                    auditDatabase.updateLog(AuditFactory.getAuditRecord(AuditRecordInterface.AuditType.LS, userAttemptingLogin.getUserId()));
                     addressBook.loadAddressBook(authenticator.getActiveUser().getUserId());
                 }
             } else {
@@ -64,13 +67,18 @@ public class CommandModule {
             if(activeUser != null){
                 addressBook.saveAndClean(activeUser.getUserId());
             }
+            auditDatabase.updateLog(AuditFactory.getAuditRecord(AuditRecordInterface.AuditType.LO, authenticator.getActiveUser().getUserId()));
             authenticator.logout();
             return false;
             }
         );
         //Change password
         commands.put("CHP", (args) -> {
-            System.out.println("Not implemented");
+            if(userModule.CHP(args.get(0), authenticator.getActiveUser().getUserId())){
+                auditDatabase.updateLog(AuditFactory.getAuditRecord(AuditRecordInterface.AuditType.SPC, authenticator.getActiveUser().getUserId()));
+            } else {
+                auditDatabase.updateLog(AuditFactory.getAuditRecord(AuditRecordInterface.AuditType.FPC, authenticator.getActiveUser().getUserId()));
+            }
             return false;
             }
         );
@@ -78,6 +86,7 @@ public class CommandModule {
         commands.put("ADU", (args) -> {
             if(authenticator.getActiveUser().getUserId().equals("admin")){
                 userModule.ADU(args.get(0));
+                auditDatabase.updateLog(AuditFactory.getAuditRecord(AuditRecordInterface.AuditType.AU, authenticator.getActiveUser().getUserId()));
             } else {
                 System.out.println("Admin not active");
             }
@@ -88,6 +97,7 @@ public class CommandModule {
         commands.put("DEU", (args) -> {
                 if(authenticator.getActiveUser().getUserId().equals("admin")){
                     userModule.DEU(args.get(0));
+                    auditDatabase.updateLog(AuditFactory.getAuditRecord(AuditRecordInterface.AuditType.DU, authenticator.getActiveUser().getUserId()));
                 } else {
                     System.out.println("Admin not active");
                 }    
@@ -117,8 +127,12 @@ public class CommandModule {
         );
         //Edit Record
         commands.put("EDR", (args) -> {
-                // editedRecord = Record.createRecordsFromArgs(args);
-                System.out.println("Not implemented");
+                if(!authenticator.getActiveUser().getUserId().equals("admin")){
+                    Record editedRecord = Record.createRecordsFromArgs(args);
+                    addressBook.EDR(editedRecord.getId(), editedRecord);
+                } else {
+                    System.out.println("Admin not authorized");
+                }
                 return false;
             }
         );
