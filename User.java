@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.HashMap;
 
 
-public Class User{
+public class User implements UserInterface{
 	private String myUserId;
 	private String myPassword;
 

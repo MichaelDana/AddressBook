@@ -1,4 +1,5 @@
-import java.util.Serializable;
-interface RecordInterface implements Serializable
+import java.io.Serializable;
+
+interface RecordInterface extends Serializable
 {	
 }
