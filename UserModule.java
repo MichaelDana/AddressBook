@@ -13,23 +13,34 @@ public class UserModule{
                 this.authenticator = authenticator;
                 users = new HashMap<>(MAX_USERS);
                 //Begin setup
-                ArrayList<File> existingFiles = new ArrayList(Arrays.asList(new File("./").listFiles()));
-                File addressBookFile = null;
+                // ArrayList<File> existingFiles = new ArrayList(Arrays.asList(new File("./").listFiles()));
+                File usersDir = null;
                 File usersFile = null;
+                String usersFileName = "users";
                 //Search for users files
                 ArrayList<File> addressBookFiles = new ArrayList(Arrays.asList(new File("./address_book").listFiles()));
                 for(File f:addressBookFiles){
                         if(f.getName().equals("users")){
-                                usersFile = f;
+                                usersDir = f;
+                                ArrayList<File> usersDirFiles = new ArrayList(Arrays.asList(new File("./address_book/users").listFiles()));
+                                for(File uf : usersDirFiles){
+                                        if(uf.getName().equals(usersFileName)){
+                                                usersFile = uf;
+                                                break;
+                                        }
+                                }
                                 break;
                         }
                 }
-                if(usersFile == null){
+                if(usersDir == null){
                         new File("./address_book/users").mkdir();
                 }
                 //Try to load users
-                if(addressBookFile != null){
+                if(usersFile != null){
                         loadUsers("./address_book/users/users");
+                } else {
+                        //No users file, only admin
+                        ADU("admin");
                 }
         }
 
@@ -73,7 +84,7 @@ public class UserModule{
         {
                 //verify user id
 
-                if(!users.get(UserID)){
+                if(!users.containsKey(UserId)){
                         System.out.println("Account does not exist");
                 } else{
                         users.remove(UserId);
@@ -81,9 +92,9 @@ public class UserModule{
                 }
         }
 
-        public void CHP(String password) throws RuntimeException
+        public void CHP(String password, String userId) throws RuntimeException
         {
-                if(!authenticator.getActiveUser().getPassword().equals(password)){
+                if(!password.isEmpty() && !authenticator.getActiveUser().getPassword().equals(password)){
                         System.out.println("Failed to change password");
                 } else {
                         //Change password
@@ -97,6 +108,7 @@ public class UserModule{
                         } else {
                                 //Validate password
                                 if(verifyPassword(newPassword)){
+                                        users.get(userId).setPassWord(newPassword);
                                         System.out.println("OK");
                                 }
                         }
@@ -113,6 +125,6 @@ public class UserModule{
         }
 
         private boolean verifyPassword(String password){
-                return true;
+                return password.matches("[a-zA-Z0-9]*");
         }
 }

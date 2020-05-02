@@ -18,11 +18,11 @@ public class User implements UserInterface{
 
 	public static User createUserFromArgs(String UserId){
 
-		String myUserId = "";
+		String myUserId = UserId;
 		String myPassword = "";
 
 		//parse args
-		return new User(userId, password);
+		return new User(myUserId, myPassword);
 	}
 
 	public static User createUserFromDBString(String dbString){
@@ -40,6 +40,10 @@ public class User implements UserInterface{
 
 	public String getPassword() {
 		return this.myPassword;
+	}
+
+	public void setPassWord(String password){
+		this.myPassword = password;
 	}
 
 	public String toString(){

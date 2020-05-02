@@ -30,7 +30,7 @@ public class Authenticator implements AuthenticatorInterface{
 	}
 	public boolean isUserAuthen(){
 		boolean answer = false;
-		if(loggedInUser == null || timeoutTime > ((System.currentTimeMillis())-loggedInUser.getLastAuthenticatedAction()))
+		if(loggedInUser == null || timeoutTime < ((System.currentTimeMillis())-loggedInUser.getLastAuthenticatedAction()))
 			return answer;
 		else
 			answer = true;
@@ -48,7 +48,6 @@ public class Authenticator implements AuthenticatorInterface{
 					Scanner userIn = new Scanner(System.in);
 					System.out.print("Password: ");
 					String password = userIn.nextLine();
-					userIn.close();
 					if(password.equals(user.getPassword())){
 						//Valid password login success
 						System.out.println("OK");
@@ -67,11 +66,20 @@ public class Authenticator implements AuthenticatorInterface{
 		return false;
 	}
 
+	public void authenticateUser(User user){
+		loggedInUser = new LoggedInUser(user);
+		loggedInUser.setLastAuthenticatedAction(System.currentTimeMillis());
+	}
+
 	public void logout(){
 		this.loggedInUser = null;
 	}
 
 	public User getActiveUser(){
-		return this.loggedInUser;
+		if (this.loggedInUser == null){
+			return null;
+		} else {
+			return this.loggedInUser.getLoggedInUser();	
+		}
 	}
 }

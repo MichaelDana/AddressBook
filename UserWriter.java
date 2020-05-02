@@ -1,6 +1,3 @@
-import java.util.list;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.*;
 import java.io.*;
 import java.io.File;
@@ -17,7 +14,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-public class UserWriter implements Writer{
+public class UserWriter{
     private static final String ALGORITHM = "AES";
     private static final String TRANSFORMATION = "AES";
     private static final String userDelim = "_USER_";

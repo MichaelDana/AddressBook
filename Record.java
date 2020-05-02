@@ -235,9 +235,11 @@ public class Record {
 			{ 11, "PC" }, 
 		}).collect(Collectors.toMap(data -> (Integer) data[0], data -> (String) data[1]));
 		String field;
-		for(int i = 1; i < 12; i++){
-			String annotation = argAnnotations.get(i) + "=";
-			fields.set(i, !(field = fields.get(i)).isEmpty() ? annotation+field : "");
+		if(fields.size() >1){
+			for(int i = 1; i < 12; i++){
+				String annotation = argAnnotations.get(i) + "=";
+				fields.set(i, !(field = fields.get(i)).isEmpty() ? annotation+field : "");
+			}
 		}
 		return fields;
 	}

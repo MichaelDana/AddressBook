@@ -1,17 +1,51 @@
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.io.*;
 public class AddressBook{
 	private static final int MAX_NUMBER_OF_RECORDS = 256;
-	private final HashMap<String,Record> records;
+	private static final String addressBookModuleKey = "userAddrsBookKey";
+	private HashMap<String,Record> records;
 	private int numberOfRecords;
 
 	public AddressBook()
 	{   
-		records = new HashMap<>(256);
+		records = new HashMap<>(MAX_NUMBER_OF_RECORDS);
 		numberOfRecords = 0;
+		ArrayList<File> addressBookFiles = new ArrayList(Arrays.asList(new File("./address_book").listFiles()));
+		File addressBookFileDir = null;
+		for(File f:addressBookFiles){
+				if(f.getName().equals("addr")){
+					addressBookFileDir = f;
+						break;
+				}
+		}
+		if(addressBookFileDir == null){
+			new File("./address_book/addr").mkdir();
+		}
 	}
+
+	public void loadAddressBook(String userID){
+		List<Record> addRecords = null;
+		try {
+			AddressBookWriter writer = new AddressBookWriter();
+			addRecords = writer.loadAddressBook("./address_book/addr/" + userID + "_addr", addressBookModuleKey);
+			for(Record r : addRecords){
+				records.put(r.getId(), r);
+				numberOfRecords++;
+			}
+		} catch (Exception e) {
+			System.out.println("Error loading address book.");
+		}
+	}
+
+	public void saveAndClean(String userID){
+		try {
+			new AddressBookWriter().saveAddressBook("./address_book/addr/" + userID + "_addr", addressBookModuleKey, records);
+			records = new HashMap<>(MAX_NUMBER_OF_RECORDS);
+		} catch (Exception e) {
+			System.out.println("Error saving address book.");
+		}
+	}
+
 	public void ADR(Record record) throws RuntimeException
 	{   
 		if(numberOfRecords < MAX_NUMBER_OF_RECORDS)
@@ -47,9 +81,9 @@ public class AddressBook{
 		return this.numberOfRecords;
 	}
 
-	public void exportAddressBook() throws IOException{
+	public void exportAddressBook(String fileName) throws IOException{
 		//fix address book file
-		new AddressBookWriter().writeToDisk("user_address_book", numberOfRecords, records.entrySet().iterator());
+		new AddressBookWriter().writeToDisk(fileName, numberOfRecords, records.entrySet().iterator());
 	}
 
 	public void importAddressBook(String fileName) throws IOException{

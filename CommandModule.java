@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.*;
-// import audit.*;
 
 public class CommandModule {
     private static final Map<String, String> commandSyntaxMap = Stream.of(new Object[][] { 
@@ -35,7 +34,7 @@ public class CommandModule {
         this.addressBook = addressBook;
         this.authenticator = authenticator;
         this.userModule = userModule;
-        auditDatabase = AuditFactory.getAuditDatabase();
+        auditDatabase = (AuditDatabase)AuditFactory.getAuditDatabase();
         commands = new HashMap<>();
 
         // Login
@@ -43,10 +42,14 @@ public class CommandModule {
             if(args.size() > 0){
                 User userAttemptingLogin = userModule.getUser(args.get(0));
                 if(!authenticator.login(userAttemptingLogin)){
-                    if(userAttemptingLogin != null && userAttemptingLogin.getPassword().isEmpty())
+                    if(userAttemptingLogin != null && userAttemptingLogin.getPassword().isEmpty()){
                         System.out.print("This is the first time the account is being used. ");
+                        userModule.CHP("", userAttemptingLogin.getUserId());
+                        authenticator.authenticateUser(userAttemptingLogin);
+                    }
                 } else {
                     //Load users address book
+                    addressBook.loadAddressBook(authenticator.getActiveUser().getUserId());
                 }
             } else {
                 System.out.println("Invalid use:");
@@ -57,9 +60,11 @@ public class CommandModule {
         );
         //Logout 
         commands.put("LOU", (args) -> {
+            User activeUser = authenticator.getActiveUser();
+            if(activeUser != null){
+                addressBook.saveAndClean(activeUser.getUserId());
+            }
             authenticator.logout();
-            // addressBook.flush()
-            System.out.println("Not implemented");
             return false;
             }
         );
@@ -71,13 +76,21 @@ public class CommandModule {
         );
         //Add user
         commands.put("ADU", (args) -> {
-            userModule.ADU(args.get(0));
+            if(authenticator.getActiveUser().getUserId().equals("admin")){
+                userModule.ADU(args.get(0));
+            } else {
+                System.out.println("Admin not active");
+            }
             return false;
             }
         );
         //Delete user
         commands.put("DEU", (args) -> {
-                userModule.DEU(args.get(0));
+                if(authenticator.getActiveUser().getUserId().equals("admin")){
+                    userModule.DEU(args.get(0));
+                } else {
+                    System.out.println("Admin not active");
+                }    
                 return false;
             }
         );
@@ -138,7 +151,7 @@ public class CommandModule {
         //Export database
         commands.put("EXD", (args) -> {
             try {
-                addressBook.exportAddressBook(); 
+                addressBook.exportAddressBook(args.get(0)); 
             } catch (Exception e) {
             }
                 return false;
@@ -164,6 +177,10 @@ public class CommandModule {
         );
         //Exit
         commands.put("EXT", (args) -> {
+                //Log user out
+                if(authenticator.getActiveUser() != null){
+                    commands.get("LOU").apply(new ArrayList(Arrays.asList(authenticator.getActiveUser().getUserId())));
+                }
                 return true;
             }
         );
@@ -177,15 +194,15 @@ public class CommandModule {
             command = args.remove(0);
         }
 
-        // //Verify User is authenticated
-        // if(!command.equals("LIN")){
-        //     return authenticator.isUserAuthen();
-        // }
-
         if(commands.containsKey(command)){
             //Try to execute command
             try{
-                return (Boolean)commands.get(command).apply(args);
+                if(command.equals("LIN") || command.equals("EXT") || authenticator.isUserAuthen()){
+                    return (Boolean)commands.get(command).apply(args);
+                } else {
+                    System.out.println("No active login session");
+                    return false;
+                }
             } catch (Exception e){
                 System.out.println("Error: Failed to execute command: " + command);
             }
