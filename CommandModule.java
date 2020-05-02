@@ -71,13 +71,13 @@ public class CommandModule {
         );
         //Add user
         commands.put("ADU", (args) -> {
-            System.out.println("Not implemented");
+            userModule.ADU(args.get(0));
             return false;
             }
         );
         //Delete user
         commands.put("DEU", (args) -> {
-                System.out.println("Not implemented");
+                userModule.DEU(args.get(0));
                 return false;
             }
         );
@@ -174,10 +174,10 @@ public class CommandModule {
             command = args.remove(0);
         }
 
-        //Verify User is authenticated
-        if(!command.equals("LIN")){
-            return authenticator.isUserAuthen();
-        }
+        // //Verify User is authenticated
+        // if(!command.equals("LIN")){
+        //     return authenticator.isUserAuthen();
+        // }
 
         if(commands.containsKey(command)){
             //Try to execute command

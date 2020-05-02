@@ -1,8 +1,21 @@
 import java.util.*;
+import java.io.File;
 
 public class aba{
     
     public static void main(String[] args) {
+        //Setup address book file
+        boolean addressBookFileExists = false;
+        ArrayList<File> files = new ArrayList(Arrays.asList(new File("./").listFiles()));
+        for(File f:files){
+                if(f.getName().equals("address_book")){
+                     addressBookFileExists = true;
+                        break;
+                }
+        }
+        if(!addressBookFileExists){
+            new File("./address_book").mkdir();
+        }
         Scanner userIn = new Scanner(System.in);
         boolean terminateProgram = false;
         Authenticator authenticator = new Authenticator();
@@ -23,6 +36,7 @@ public class aba{
             //interpret command
             terminateProgram = commandModule.executeCommand(userIn.nextLine());
         }
+        userModule.save();
         userIn.close();
     }
 }

@@ -7,7 +7,7 @@ public class User{
 	private String myPassword;
 
 	public User(String userId){
-		this(userId, ""));
+		this(userId, "");
 	}
 
 	public User(String userId, String password){
@@ -24,6 +24,11 @@ public class User{
 		//parse args
 		return new User(userId, password);
 	}
+
+	public static User createUserFromDBString(String dbString){
+		String [] fields = dbString.replaceAll(";"," ;").split(";");
+		return new User(fields[0].trim(), fields[1].trim());
+	}
 	
 	public String getUserId() {
 		return this.myUserId;
@@ -35,6 +40,10 @@ public class User{
 
 	public String getPassword() {
 		return this.myPassword;
+	}
+
+	public String toString(){
+		return this.myUserId+";"+this.myPassword;
 	}
 
 }

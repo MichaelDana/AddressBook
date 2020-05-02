@@ -7,6 +7,7 @@ public class UserModule{
         private static final int MAX_USERS = 7;
         private HashMap<String,User> users;
         private Authenticator authenticator;
+        private static final String userModuleKey = "userModAddrssKey";
 
         public UserModule (Authenticator authenticator){
                 this.authenticator = authenticator;
@@ -14,38 +15,70 @@ public class UserModule{
                 //Begin setup
                 ArrayList<File> existingFiles = new ArrayList(Arrays.asList(new File("./").listFiles()));
                 File addressBookFile = null;
-                //Search for addressbook files
-                for(File file: existingFiles){
-                        if(file.getName().equals("address_book")){
-                                addressBookFile = file;
+                File usersFile = null;
+                //Search for users files
+                ArrayList<File> addressBookFiles = new ArrayList(Arrays.asList(new File("./address_book").listFiles()));
+                for(File f:addressBookFiles){
+                        if(f.getName().equals("users")){
+                                usersFile = f;
+                                break;
                         }
                 }
+                if(usersFile == null){
+                        new File("./address_book/users").mkdir();
+                }
                 //Try to load users
-                loadUsers("./address_book/users");
+                if(addressBookFile != null){
+                        loadUsers("./address_book/users/users");
+                }
         }
 
         private void loadUsers(String fileName){
                 UserWriter writer = new UserWriter();
-                // List<User> users = writer.readFromDisk(fileName);
+                List<User> loadedUsers = null;
+                try {
+                        loadedUsers= writer.readFromDisk(fileName, UserModule.userModuleKey);
+                } catch (Exception e){
+                        System.out.println("Failed to initialize users");
+                }
+                for(User user : loadedUsers){
+                        users.put(user.getUserId(), user);
+                }
+        }
+
+        public void save(){
+                try{
+                        new UserWriter().writeToDisk("./address_book/users/users", UserModule.userModuleKey, this.users);
+                } catch (Exception e){
+                        System.out.println("Failed to save users");
+                }
         }
         
         public void ADU(String userId) throws RuntimeException
         {
+                //verify user id
 
                 if(users.size() <= MAX_USERS){
-                        users.put(userId, new User(userId));
-                        System.out.println("USER ADDED");
+                        if(!users.containsKey(userId)){
+                                users.put(userId, new User(userId));
+                                System.out.println("OK");
+                        } else {
+                                System.out.println("Account already exists");
+                        }
                 }
-                else
-                        throw new RuntimeException("No more space for new users.");
+                        
         }
 
         public void DEU(String UserId) throws RuntimeException
         {
-                if(!users.get(UserID))
-                        throw new RuntimeException("No user matching ID to delete");
-                else
+                //verify user id
+
+                if(!users.get(UserID)){
+                        System.out.println("Account does not exist");
+                } else{
                         users.remove(UserId);
+                        System.out.println("OK");
+                }
         }
 
         public void CHP(String password) throws RuntimeException
