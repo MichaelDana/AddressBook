@@ -1,8 +1,8 @@
 public class AuditFactory
 {
-	public static AuditRecordInterface getAuditRecord(AuditType type, 
+	public static AuditRecordInterface getAuditRecord(AuditRecordInterface.AuditType type, 
 													String userID)
-	{	return new AuditRecord(type, command, userID);
+	{	return new AuditRecord(type, userID);
 	}
 	public static AuditDatabaseInterface getAuditDatabase(String auditFile)
 	{	return new AuditDatabase(auditFile);
