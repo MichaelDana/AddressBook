@@ -9,4 +9,6 @@ interface AuditDatabaseInterface {
     void getAuditLog(UserInterface activeUser);
 
     void updateLog(AuditRecordInterface newRecord);
+
+	void deleteLog(String userID);
 }

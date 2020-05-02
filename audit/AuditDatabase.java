@@ -65,24 +65,30 @@ class AuditDatabase implements AuditDatabaseInterface, Writer
 			mRecords.remove(0);
 			firstRecord = null;	
 		}
+		else if(!mUsersToPositions.containsKey(newRecord.getKey()))
+			mUsersToPositions.put(newRecord.getKey(), new LinkedList<Integer>);
 		mRecords.add(newRecord);
 		positions = mUsersToPositions.get(newRecord.getKey());
 		positions.add(mRecords.size() - 1);
     }
-	public void writeToDisk(String auditFile, RecordInterface newRecord) 
+	public void deleteLog(String userID)
 	{
-		try
-		{
-			ObjectOutputStream out = new ObjectOutputStream(
-										new FileOutputStream(auditFile));
-			out.writeInt(database.size())
-			out.writeObject(newRecord);
-		}
-		catch(IOException e)
-		{	System.out.println(e);
-		}
-		catch(IOException e
-    }
+		LinkedList<Integer> positions = mUsersToPositions.get(userID);
+		for(int i: positions)
+			mRecords.remove(i);
+		positions.clear();
+		positions = null;
+		mUsersToPositions.remove(userID);
+	}
+    public void writeToDisk(String auditFile, RecordInterface newRecord)
+	{
+		if(!(newRecord instanceof AuditRecordInterface))
+			throw new RuntimeException("Record is not an Audit Record.");
+		
+		this.updateLog((AuditRecordInterface) newRecord);
+		if(mRecords.size() 
+
+	}
     private void loadFile(HashMap<String, 
     					LinkedList<Integer>> usersToPositions, 
 						ArrayList<AuditRecordInterface> records,
@@ -126,7 +132,7 @@ class AuditDatabase implements AuditDatabaseInterface, Writer
 			}
 			catch(IOException e)
 			{	System.out.println(e);
-				exit(1);
+				System.exit(1);
 			}
 		}
     }
