@@ -8,8 +8,10 @@ public class UserModule{
         private HashMap<String,User> users;
         private Authenticator authenticator;
         private static final String userModuleKey = "userModAddrssKey";
+        private Scanner userIn;
 
-        public UserModule (Authenticator authenticator){
+        public UserModule (Authenticator authenticator, Scanner scanner){
+                userIn = scanner;
                 this.authenticator = authenticator;
                 users = new HashMap<>(MAX_USERS);
                 //Begin setup
@@ -99,10 +101,11 @@ public class UserModule{
                 } else {
                         //Change password
                         System.out.println("Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.");
-                        Scanner userIn = new Scanner(System.in);
+                        // Scanner userIn = new Scanner(System.in);
                         String newPassword = userIn.nextLine();
                         System.out.print("Reenter the same password:");
                         String newPasswordDuplicate = userIn.nextLine();
+                        System.out.print("");
                         if(!newPassword.equals(newPasswordDuplicate)){
                                 System.out.println("Passwords do not match");
                         } else {

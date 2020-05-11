@@ -18,8 +18,8 @@ public class aba{
         }
         Scanner userIn = new Scanner(System.in);
         boolean terminateProgram = false;
-        Authenticator authenticator = new Authenticator();
-        UserModule userModule = new UserModule(authenticator); 
+        Authenticator authenticator = new Authenticator(userIn);
+        UserModule userModule = new UserModule(authenticator, userIn); 
         AddressBook addressBook = new AddressBook();
         CommandModule commandModule = new CommandModule(addressBook, authenticator, userModule);
         
@@ -33,8 +33,10 @@ public class aba{
             // }
             //Begin accepting commands from user
             System.out.print("> ");
+            String userInput = userIn.nextLine();
+            System.out.print("");            
             //interpret command
-            terminateProgram = commandModule.executeCommand(userIn.nextLine());
+            terminateProgram = commandModule.executeCommand(userInput);
         }
         userModule.save();
         userIn.close();

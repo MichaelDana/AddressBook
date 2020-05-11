@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Authenticator implements AuthenticatorInterface{
 	private static final float timeoutTime = 300000;//5 min
+	private Scanner userIn;
 	private class LoggedInUser {
 		private User loggedInUser;
 		private long lastAuthenticatedAction;
@@ -25,7 +26,8 @@ public class Authenticator implements AuthenticatorInterface{
 	}
 	private LoggedInUser loggedInUser;
 
-	public Authenticator(){
+	public Authenticator(Scanner scanner){
+		userIn = scanner;
 		this.loggedInUser = null;
 	}
 	public boolean isUserAuthen(){
@@ -45,9 +47,10 @@ public class Authenticator implements AuthenticatorInterface{
 			} else {
 				//try to login
 				if(!user.getPassword().isEmpty()){
-					Scanner userIn = new Scanner(System.in);
+					// Scanner userIn = new Scanner(System.in);
 					System.out.print("Password: ");
 					String password = userIn.nextLine();
+					System.out.print("");
 					if(password.equals(user.getPassword())){
 						//Valid password login success
 						System.out.println("OK");
