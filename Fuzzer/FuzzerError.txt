@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/pexpect/expect.py", line 97, in expect_loop
+    return self.timeout()
+  File "/usr/lib/python3/dist-packages/pexpect/expect.py", line 70, in timeout
+    raise TIMEOUT(msg)
+pexpect.exceptions.TIMEOUT: <pexpect.popen_spawn.PopenSpawn object at 0x7f2a902e01d0>
+searcher: searcher_re:
+    0: re.compile("b'> '")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Fuzzer.py", line 1052, in <module>
+    tests,failedTests = runTests(testCases)
+  File "Fuzzer.py", line 977, in runTests
+    child.expect('> ')
+  File "/usr/lib/python3/dist-packages/pexpect/spawnbase.py", line 321, in expect
+    timeout, searchwindowsize, async)
+  File "/usr/lib/python3/dist-packages/pexpect/spawnbase.py", line 345, in expect_list
+    return exp.expect_loop(timeout)
+  File "/usr/lib/python3/dist-packages/pexpect/expect.py", line 107, in expect_loop
+    return self.timeout(e)
+  File "/usr/lib/python3/dist-packages/pexpect/expect.py", line 70, in timeout
+    raise TIMEOUT(msg)
+pexpect.exceptions.TIMEOUT: <pexpect.popen_spawn.PopenSpawn object at 0x7f2a902e01d0>
+searcher: searcher_re:
+    0: re.compile("b'> '")
+<pexpect.popen_spawn.PopenSpawn object at 0x7f2a902e01d0>
+searcher: searcher_re:
+    0: re.compile("b'> '")

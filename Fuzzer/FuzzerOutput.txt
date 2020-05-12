@@ -1,0 +1,249 @@
+TEST FAILURE: Login as admin, first time
+Command: oa2PFlBnLm46Zz8
+Expected: 
+Reenter the same password:
+Actual: 
+Reenter the same password:
+
+
+TEST FAILURE: Login as admin, add users
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Failed login as valid user non matching passwords, first time
+Command: LIN validUser
+Expected: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Failed login as valid user easy to guess password, first time
+Command: LIN validUser
+Expected: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Failed login as valid user illegal characters, first time
+Command: LIN validUser
+Expected: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Login as valid user, first time
+Command: LIN validUser
+Expected: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Login as valid user, first time (random user)
+Command: LIN 1236712Us
+Expected: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Login bad account
+Command: LIN invalidAccount
+Expected: Invalid credentials
+>
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Login valid account
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Failed login valid account
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Logout success
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Add users not active login
+Command: ADU newUserId
+Expected: No active login session
+>
+Actual: No active login session
+> 
+
+
+TEST FAILURE: Add users admin not active
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Login as admin, add user invalid user id
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Login as admin, add users account already exists
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Delete users not active login
+Command: DEU newUserId
+Expected: No active login session
+>
+Actual: No active login session
+> 
+
+
+TEST FAILURE: Delete user admin not active
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Delete user, invalid id
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Delete user, does not exist
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Delete user success
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Add record as admin
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Add record no record id
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Add record invalid id
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Add record invalid field
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Add record success
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Add full record success
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Add record duplicate id
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Delete record as admin
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Delete record no record id
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Delete record invalid id
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Delete record success
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Delete record, record not found
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Edit record as admin
+Command: LIN admin
+Expected: Password: 
+Actual: This is the first time the account is being used. Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.
+
+
+
+TEST FAILURE: Edit record no record id
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
+TEST FAILURE: Edit record invalid id
+Command: LIN validUser
+Expected: Password: 
+Actual: Invalid credentials
+> 
+
+
