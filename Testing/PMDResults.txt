@@ -1,0 +1,114 @@
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:3:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:6:	Avoid using implementation types like 'HashMap'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:49:	The instance method name 'ADR' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:58:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:60:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:62:	The instance method name 'DER' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:65:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:67:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:70:	The instance method name 'RER' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/AddressBook.java:74:	The instance method name 'EDR' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:3:	Avoid duplicate imports such as 'java.io.File'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:4:	Avoid duplicate imports such as 'java.io.FileInputStream'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:5:	Avoid duplicate imports such as 'java.io.FileOutputStream'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:6:	Avoid duplicate imports such as 'java.io.IOException'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:7:	Avoid unused imports such as 'java.security.InvalidKeyException'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:9:	Avoid unused imports such as 'java.security.NoSuchAlgorithmException'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:11:	Avoid unused imports such as 'javax.crypto.BadPaddingException'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:13:	Avoid unused imports such as 'javax.crypto.IllegalBlockSizeException'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:14:	Avoid unused imports such as 'javax.crypto.NoSuchPaddingException'
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:17:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:31:	Ensure that resources like this FileWriter object are closed after use
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:33:	Useless parentheses.
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:39:	Avoid using implementation types like 'HashMap'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:47:	Ensure that resources like this FileOutputStream object are closed after use
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:50:	New exception is thrown in catch block, original stack trace may be lost
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:54:	Avoid using implementation types like 'HashMap'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:65:	Ensure that resources like this FileReader object are closed after use
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:66:	Ensure that resources like this FileReader object are closed after use
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:93:	Ensure that resources like this FileInputStream object are closed after use
+/home/humility_over_pride/COMP365/AddressBook/AddressBookWriter.java:108:	New exception is thrown in catch block, original stack trace may be lost
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:6:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:8:	Avoid using implementation types like 'HashMap'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:9:	Avoid using implementation types like 'ArrayList'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:42:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:56:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:60:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:75:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:84:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:94:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:107:	This for loop can be replaced by a foreach loop
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:107:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:126:	Avoid using implementation types like 'HashMap'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:127:	Avoid using implementation types like 'ArrayList'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabase.java:157:	'catch' branch identical to 'IOException' branch
+/home/humility_over_pride/COMP365/AddressBook/AuditDatabaseInterface.java:2:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/AuditFactory.java:1:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/AuditFactory.java:1:	The utility class name 'AuditFactory' doesn't match '[A-Z][a-zA-Z0-9]+(Utils?|Helper|Constants)'
+/home/humility_over_pride/COMP365/AddressBook/AuditFactory.java:2:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+/home/humility_over_pride/COMP365/AddressBook/AuditRecord.java:4:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/AuditRecordInterface.java:1:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/AuditRecordInterface.java:6:	Unnecessary modifier 'public' on method 'display': the method is declared in an interface type
+/home/humility_over_pride/COMP365/AddressBook/AuditRecordInterface.java:7:	Unnecessary modifier 'public' on method 'getKey': the method is declared in an interface type
+/home/humility_over_pride/COMP365/AddressBook/Authenticator.java:4:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/Authenticator.java:35:	Useless parentheses.
+/home/humility_over_pride/COMP365/AddressBook/Authenticator.java:36:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/Authenticator.java:38:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/AuthenticatorInterface.java:1:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:9:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:28:	Avoid unused private fields such as 'addressBook'.
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:28:	Perhaps 'addressBook' could be replaced by a local variable.
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:110:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:112:	This statement should have braces
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:150:	Avoid empty if statements
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:160:	Avoid empty catch blocks
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:169:	Avoid empty catch blocks
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:207:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:214:	Position literals first in String comparisons
+/home/humility_over_pride/COMP365/AddressBook/CommandModule.java:214:	Position literals first in String comparisons
+/home/humility_over_pride/COMP365/AddressBook/Record.java:3:	Avoid duplicate imports such as 'java.util.HashMap'
+/home/humility_over_pride/COMP365/AddressBook/Record.java:3:	Avoid unused imports such as 'java.util.HashMap'
+/home/humility_over_pride/COMP365/AddressBook/Record.java:6:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/Record.java:54:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+/home/humility_over_pride/COMP365/AddressBook/Record.java:209:	Consider simply returning the value vs storing it in local variable 'recordStr'
+/home/humility_over_pride/COMP365/AddressBook/Record.java:218:	Avoid using implementation types like 'ArrayList'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/RecordInterface.java:3:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/User.java:1:	Avoid unused imports such as 'java.util'
+/home/humility_over_pride/COMP365/AddressBook/User.java:2:	Avoid duplicate imports such as 'java.util.HashMap'
+/home/humility_over_pride/COMP365/AddressBook/User.java:2:	Avoid unused imports such as 'java.util.HashMap'
+/home/humility_over_pride/COMP365/AddressBook/User.java:5:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/User.java:19:	The method parameter name 'UserId' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/User.java:37:	The method parameter name 'UserId' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/UserInterface.java:1:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:1:	Avoid duplicate imports such as 'java.util.Arrays'
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:2:	Avoid duplicate imports such as 'java.util.HashMap'
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:6:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:8:	Avoid using implementation types like 'HashMap'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:70:	The instance method name 'ADU' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:85:	The instance method name 'DEU' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:85:	The method parameter name 'UserId' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:97:	The instance method name 'CHP' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:123:	The instance method name 'IUN' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/UserModule.java:123:	The method parameter name 'UserID' doesn't match '[a-z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:3:	Avoid duplicate imports such as 'java.io.File'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:4:	Avoid duplicate imports such as 'java.io.FileInputStream'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:5:	Avoid duplicate imports such as 'java.io.FileOutputStream'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:6:	Avoid duplicate imports such as 'java.io.IOException'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:6:	Avoid unused imports such as 'java.io.IOException'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:7:	Avoid unused imports such as 'java.security.InvalidKeyException'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:9:	Avoid unused imports such as 'java.security.NoSuchAlgorithmException'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:11:	Avoid unused imports such as 'javax.crypto.BadPaddingException'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:13:	Avoid unused imports such as 'javax.crypto.IllegalBlockSizeException'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:14:	Avoid unused imports such as 'javax.crypto.NoSuchPaddingException'
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:17:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:22:	Avoid using implementation types like 'HashMap'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:30:	Ensure that resources like this FileOutputStream object are closed after use
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:33:	New exception is thrown in catch block, original stack trace may be lost
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:37:	Avoid using implementation types like 'HashMap'; use the interface instead
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:53:	Ensure that resources like this FileInputStream object are closed after use
+/home/humility_over_pride/COMP365/AddressBook/UserWriter.java:67:	New exception is thrown in catch block, original stack trace may be lost
+/home/humility_over_pride/COMP365/AddressBook/Writer.java:2:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/aba.java:4:	All classes, interfaces, enums and annotations must belong to a named package
+/home/humility_over_pride/COMP365/AddressBook/aba.java:4:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+/home/humility_over_pride/COMP365/AddressBook/aba.java:4:	The class name 'aba' doesn't match '[A-Z][a-zA-Z0-9]*'
+/home/humility_over_pride/COMP365/AddressBook/aba.java:19:	Ensure that resources like this Scanner object are closed after use
