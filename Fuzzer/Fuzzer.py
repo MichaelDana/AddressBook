@@ -27,11 +27,11 @@ setupTestCases = {
         ],
         [
             adminPassword,
-            "\r\nReenter the same password:"
+            "\nReenter the same password:"
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -44,19 +44,19 @@ setupTestCases = {
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "ADU " + validUserId,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "ADU " + deletableUserId,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "ADU " + randomUserID,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -69,11 +69,11 @@ setupTestCases = {
         ],
         [
             validUserPassword,
-            "\r\nReenter the same password:"
+            "\nReenter the same password:"
         ],
         [
             "not_matching12345$",
-            "Passwords do not match\r\n>"
+            "Passwords do not match\n>"
         ],
         [
             "EXT"
@@ -86,11 +86,11 @@ setupTestCases = {
         ],
         [
             "password",
-            "\r\nReenter the same password:"
+            "\nReenter the same password:"
         ],
         [
             "password",
-            "Password is too easy to guess\r\n>"
+            "Password is too easy to guess\n>"
         ],
         [
             "EXT"
@@ -103,11 +103,11 @@ setupTestCases = {
         ],
         [
             "password$12alksd#",
-            "\r\nReenter the same password:"
+            "\nReenter the same password:"
         ],
         [
             "password$12alksd#",
-            "Password contains illegal characters\r\n>"
+            "Password contains illegal characters\n>"
         ],
         [
             "EXT"
@@ -120,11 +120,11 @@ setupTestCases = {
         ],
         [
             validUserPassword,
-            "\r\nReenter the same password:"
+            "\nReenter the same password:"
         ],
         [
             validUserPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -137,11 +137,11 @@ setupTestCases = {
         ],
         [
             randomUserPassword,
-            "\r\nReenter the same password:"
+            "\nReenter the same password:"
         ],
         [
             randomUserPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -153,7 +153,7 @@ testCases = {
     "Login bad account": [
         [
             "LIN invalidAccount",
-            "Invalid credentials\r\n>"
+            "Invalid credentials\n>"
         ],
         [
             "EXT"
@@ -166,7 +166,7 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "EXT"
@@ -179,7 +179,7 @@ testCases = {
         ],
         [
             "not_password",
-            "Invalid credentials\r\n> "
+            "Invalid credentials\n> "
         ],
         [
             "EXT"
@@ -201,11 +201,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "LOU",
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -214,7 +214,7 @@ testCases = {
     "Add users not active login": [
         [
             "ADU newUserId",
-            "No active login session\r\n>"
+            "No active login session\n>"
         ],
         [
             "EXT"
@@ -227,11 +227,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "ADU newUserId",
-            "Admin not active\r\n>"
+            "Admin not active\n>"
         ],
         [
             "EXT"
@@ -244,11 +244,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "ADU 12345^%@",
-            "Invalid userID\r\n>"
+            "Invalid userID\n>"
         ],
         [
             "EXT"
@@ -261,11 +261,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "ADU " + validUserId,
-            "Account already exists\r\n>"
+            "Account already exists\n>"
         ],
         [
             "EXT"
@@ -274,7 +274,7 @@ testCases = {
     "Delete users not active login": [
         [
             "DEU newUserId",
-            "No active login session\r\n>"
+            "No active login session\n>"
         ],
         [
             "EXT"
@@ -287,11 +287,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "DEU newUserId",
-            "Admin not active\r\n>"
+            "Admin not active\n>"
         ],
         [
             "EXT"
@@ -304,11 +304,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "DEU nonExistantUser$%",
-            "Invalid userID\r\n>"
+            "Invalid userID\n>"
         ],
         [
             "EXT"
@@ -321,11 +321,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "DEU nonExistantUser",
-            "Account does not exist\r\n>"
+            "Account does not exist\n>"
         ],
         [
             "EXT"
@@ -338,11 +338,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "DEU " + deletableUserId,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -364,11 +364,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "ADR 12345 GN=firstName",
-            "Admin not authorized\r\n>"
+            "Admin not authorized\n>"
         ],
         [
             "EXT"
@@ -381,11 +381,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "ADR GN=firstName",
-            "No recordID\r\n>"
+            "No recordID\n>"
         ],
         [
             "EXT"
@@ -398,11 +398,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "ADR 12345$ GN=firstName",
-            "Invalid recordID\r\n>"
+            "Invalid recordID\n>"
         ],
         [
             "EXT"
@@ -415,11 +415,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "ADR 12345 XN=invalid",
-            "One or more invalid record data fields\r\n>"
+            "One or more invalid record data fields\n>"
         ],
         [
             "EXT"
@@ -432,15 +432,15 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
-            "ADR "+ validRecordId + " GN=firstName",
-            "OK\r\n>"
+            "ADR " + validRecordId + " GN=firstName",
+            "OK\n>"
         ],
         [
-            "ADR "+ deletableRecordId + " GN=firstName",
-            "OK\r\n>"
+            "ADR " + deletableRecordId + " GN=firstName",
+            "OK\n>"
         ],
         [
             "EXT"
@@ -453,11 +453,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "ADR " + fullRecordId + " GN=Susan SN=Owensby PEM=personal@gmail.com WEM=work@gmail.com PPH=763-263-7519 WPH=763-217-5750 SA=4284  Willison Street CITY=Big Lake CTY=USA PC=55309",
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -470,11 +470,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
-            "ADR "+ validRecordId + " GN=firstName",
-            "Duplicate recordID\r\n>"
+            "ADR " + validRecordId + " GN=firstName",
+            "Duplicate recordID\n>"
         ],
         [
             "EXT"
@@ -496,11 +496,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "DER 12345",
-            "Admin not authorized\r\n>"
+            "Admin not authorized\n>"
         ],
         [
             "EXT"
@@ -513,11 +513,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "DER",
-            "No recordID\r\n>"
+            "No recordID\n>"
         ],
         [
             "EXT"
@@ -530,11 +530,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "DER 1234$",
-            "Invalid recordID\r\n>"
+            "Invalid recordID\n>"
         ],
         [
             "EXT"
@@ -547,11 +547,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "DER " + deletableRecordId,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -564,11 +564,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "DER " + deletableRecordId,
-            "RecordID not found\r\n>"
+            "RecordID not found\n>"
         ],
         [
             "EXT"
@@ -590,11 +590,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "EDR 12345 GN=name",
-            "Admin not authorized\r\n>"
+            "Admin not authorized\n>"
         ],
         [
             "EXT"
@@ -607,11 +607,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "EDR GN=name",
-            "No recordID\r\n>"
+            "No recordID\n>"
         ],
         [
             "EXT"
@@ -624,11 +624,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "EDR 12#34 GN=name",
-            "Invalid recordID\r\n>"
+            "Invalid recordID\n>"
         ],
         [
             "EXT"
@@ -641,11 +641,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "EDR " + deletableRecordId + " GN=name",
-            "RecordID not found\r\n>"
+            "RecordID not found\n>"
         ],
         [
             "EXT"
@@ -658,11 +658,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "EDR " + validRecordId + " XN=invalid",
-            "One or more invalid record data fields\r\n>"
+            "One or more invalid record data fields\n>"
         ],
         [
             "EXT"
@@ -675,15 +675,15 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "EDR " + validRecordId + " GN=newName SN=newSurName",
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "RER " + validRecordId,
-            validRecordId + " SN=newSurName PEM= WEM= PPH= WPH= SA= CITY= STP= CTY= PC=\r\n>"
+            validRecordId + " SN=newSurName PEM= WEM= PPH= WPH= SA= CITY= STP= CTY= PC=\n>"
         ],
         [
             "EXT"
@@ -692,7 +692,7 @@ testCases = {
     "Read record, not active login": [
         [
             "RER " + fullRecordId + " PEM WEM SA",
-            "No active login session\r\n>"
+            "No active login session\n>"
         ],
         [
             "EXT"
@@ -705,11 +705,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "RER " + fullRecordId + " PEM WEM SA",
-            "Admin not authorized\r\n>"
+            "Admin not authorized\n>"
         ],
         [
             "EXT"
@@ -722,11 +722,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "RER 12#34 GN=name",
-            "Invalid recordID\r\n>"
+            "Invalid recordID\n>"
         ],
         [
             "EXT"
@@ -739,11 +739,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "RER " + deletableRecordId + " GN=name",
-            "RecordID not found\r\n>"
+            "RecordID not found\n>"
         ],
         [
             "EXT"
@@ -756,11 +756,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "RER " + validRecordId + " XN=invalid",
-            "One or more invalid record data fields\r\n>"
+            "One or more invalid record data fields\n>"
         ],
         [
             "EXT"
@@ -773,11 +773,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "RER " + fullRecordId + " PEM WEM SA",
-            fullRecordId + " PEM=personal@gmail.com WEM=work@gmail.com SA=4284  Willison Street\r\nOK\r\n>"
+            fullRecordId + " PEM=personal@gmail.com WEM=work@gmail.com SA=4284  Willison Street\nOK\n>"
         ],
         [
             "EXT"
@@ -790,11 +790,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "RER " + fullRecordId,
-            fullRecordId + " GN=Susan SN=Owensby PEM=personal@gmail.com WEM=work@gmail.com PPH=763-263-7519 WPH=763-217-5750 SA=4284  Willison Street CITY=Big Lake CTY=USA PC=55309\r\nOK\r\n>"
+            fullRecordId + " GN=Susan SN=Owensby PEM=personal@gmail.com WEM=work@gmail.com PPH=763-263-7519 WPH=763-217-5750 SA=4284  Willison Street CITY=Big Lake CTY=USA PC=55309\nOK\n>"
         ],
         [
             "EXT"
@@ -816,7 +816,7 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "CHP invalid_pass",
@@ -833,11 +833,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "CHP " + validUserPassword,
-            "Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.\r\n"
+            "Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.\n"
         ],
         [
             validUserNewPassword,
@@ -858,11 +858,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "CHP " + validUserPassword,
-            "Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.\r\n"
+            "Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.\n"
         ],
         [
             "illegalChar$",
@@ -883,11 +883,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "CHP " + validUserPassword,
-            "Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.\r\n"
+            "Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.\n"
         ],
         [
             "password",
@@ -895,7 +895,7 @@ testCases = {
         ],
         [
             "password",
-            "Password is too easy to guess\r\n> "
+            "Password is too easy to guess\n> "
         ],
         [
             "EXT"
@@ -908,11 +908,11 @@ testCases = {
         ],
         [
             validUserPassword,
-            "OK\r\n> "
+            "OK\n> "
         ],
         [
             "CHP " + validUserPassword,
-            "Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.\r\n"
+            "Create a new password. Passwords may contain up to 24 upper-or lower-case letters or numbers. Choose an uncommon password that would be difficult to guess.\n"
         ],
         [
             validUserNewPassword,
@@ -920,7 +920,7 @@ testCases = {
         ],
         [
             validUserNewPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "EXT"
@@ -933,11 +933,11 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "HLP",
-            "EXT\r\nIMD <Input_File>\r\nCHP <old password>\r\nHLP [<command name>]\r\nDAL [<userID>]\r\nADR <recordID> [<field1=value1> <field2=value2> ...]\r\nEXD <Output_File>\r\nDER <recordID>\r\nLIN <userID>\r\nEDR <recordID><field1=value1> [<field2=value2> ...]\r\nADU <userID>\r\nLOU\r\nDEU <userID>\r\nRER [<recordID>][<fieldname> ...]\r\n> "
+            "EXT\nIMD <Input_File>\nCHP <old password>\nHLP [<command name>]\nDAL [<userID>]\nADR <recordID> [<field1=value1> <field2=value2> ...]\nEXD <Output_File>\nDER <recordID>\nLIN <userID>\nEDR <recordID><field1=value1> [<field2=value2> ...]\nADU <userID>\nLOU\nDEU <userID>\nRER [<recordID>][<fieldname> ...]\n> "
         ],
         ["EXT"]
     ],
@@ -948,15 +948,17 @@ testCases = {
         ],
         [
             adminPassword,
-            "OK\r\n>"
+            "OK\n>"
         ],
         [
             "HLP EXT",
-            "EXT\r\n> "
+            "EXT\n> "
         ],
         ["EXT"]
     ]
 }
+
+
 def cleanAddressBook():
     try:
         if(os.path.isdir("address_book")):
@@ -964,8 +966,9 @@ def cleanAddressBook():
                 shutil.rmtree("address_book/users")
             if (os.path.isdir("address_book/addr")):
                 shutil.rmtree("address_book/addr")
-    except :
+    except:
         print("Unable to clean before tests.")
+
 
 def runTests(testCases):
     testsRun = 0
@@ -983,7 +986,7 @@ def runTests(testCases):
                 except expectTimeout:
                     actual = child.before.decode("utf-8")
                     expected = step[1]
-                    print("TEST FAILURE: " + case )
+                    print("TEST FAILURE: " + case)
                     print("Command: " + step[0])
                     print("Expected: " + expected)
                     print("Actual: " + actual)
@@ -991,13 +994,16 @@ def runTests(testCases):
                     testsFailed += 1
                     break
         if not child.terminated:
+            print("Waiting")
             child.wait()
-        time.sleep(0.2)
-    return testsRun,testsFailed   
+        time.sleep(0.5)
+    return testsRun, testsFailed
+
 
 def randomString(stringLength):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
+
 
 def generateRandomTestCase():
     testCase = {}
@@ -1012,11 +1018,11 @@ def generateRandomTestCase():
             ],
             [
                 randomUserPassword,
-                "OK\r\n> "
+                "OK\n> "
             ],
             [
-                "ADR "+ testID + " GN=" + gn + " SN=" + sn,
-                "OK\r\n>"
+                "ADR " + testID + " GN=" + gn + " SN=" + sn,
+                "OK\n>"
             ],
             [
                 "RER " + testID + " GN SN",
@@ -1026,31 +1032,36 @@ def generateRandomTestCase():
                 "EXT"
             ]
         ]
-        testCase["Test 255"] = [
+    return testCase
+
+
+finalTestCase = {
+    "Test Final" :[
             [
                 "LIN " + randomUserID,
                 "Password: "
             ],
-            [
+        [
                 randomUserPassword,
-                "OK\r\n> "
-            ],
-            [
-                "ADR "+ testID + " GN=" + gn + " SN=" + sn,
+                "OK\n> "
+        ],
+        [
+                "ADR " + randomString(16) + " GN=" + randomString(64) + " SN=" + randomString(64),
                 "Number of records exceeds maximum"
-            ],
-            [
+        ],
+        [
                 "EXT"
-            ]
-        ]   
-    return testCase
-
+        ]
+    ]
+}
 
 cleanAddressBook()
 randomTestCase = generateRandomTestCase()
-setupTests,failedSetupTests = runTests(setupTestCases)
-tests,failedTests = runTests(testCases)
-randomTests,failedRandomTests = runTests(randomTestCase)
+setupTests, failedSetupTests = runTests(setupTestCases)
+tests, failedTests = runTests(testCases)
+randomTests, failedRandomTests = runTests(randomTestCase)
+finalTests, failedFinalTests = runTests(finalTestCase)
 
-print("Failed: " + str(failedSetupTests + failedTests+failedRandomTests))
-print("Passed: " + str((setupTests+tests+randomTests) - (failedSetupTests+failedTests+failedRandomTests)))
+print("Failed: " + str(failedSetupTests + failedTests+failedRandomTests+failedFinalTests))
+print("Passed: " + str((setupTests+tests+randomTests+finalTests) -
+                       (failedSetupTests+failedTests+failedRandomTests+failedFinalTests)))
