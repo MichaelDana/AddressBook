@@ -1,13 +1,13 @@
-#Address Book
+# Address Book
 
-###Running AddressBook 
+### Running AddressBook 
 
 To run the AddressBook run:
 ```
 java -jar AddressBook.jar
 ```
 
-###Running Fuzzer
+### Running Fuzzer
 
 Fuzzer requires python and pexpect `pip install pexpect`
 <br>
@@ -18,7 +18,7 @@ python Fuzzer.py
 ```
 
 
-###Fuzzer Tests
+### Fuzzer Tests
 Fuzzer contains 57 tests covering the functionality specified by the address book command line interface.
 These are listed in the top of the Fuzzer.
 Example:
@@ -54,7 +54,7 @@ Example:
     ],
 ```
 
-###Fuzzer Results
+### Fuzzer Results
 ```
 TEST FAILURE: Edit record success
 Command: RER 123456677
@@ -89,5 +89,5 @@ Failed: 3
 Passed: 310
 ```
 
-###Lynis and Programming Mistake Detector(PMD) Results
+### Lynis and Programming Mistake Detector(PMD) Results
 Results from Lynis and PMD can be found in `Testing` directory
