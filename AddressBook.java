@@ -48,70 +48,113 @@ public class AddressBook{
 
 	public void ADR(Record record) throws RuntimeException
 	{   
-		if(numberOfRecords < MAX_NUMBER_OF_RECORDS)
+		if(numberOfRecords < MAX_NUMBER_OF_RECORDS && record != null)
         {	
+			//Validate id
+			if(!validId(record.getId())){
+				System.out.println("Invalid recordID");
+				return;
+			}
+			//Check if duplicate
+			if(records.get(record.getId()) != null){
+				System.out.println("Duplicate recordID");
+				return;
+			}
 			records.put(record.getId(), record);
 			numberOfRecords++;
-			System.out.println("RECORD ADDED");
+			System.out.println("OK");
 		}
-		else if(record == null)
-			System.out.print("Failed to add record");
-        else
-	       throw new RuntimeException("No more space for new records.");
+		// else if(record == null)
+			// System.out.print("Failed to add record");
+			
+        else if(record != null){
+			System.out.print("Number of records exceeds maximum");
+		}
 	}
+
+	private boolean validId(String id){
+		if(id.length() > 16 || !id.matches("^([A-Za-z]|[0-9])*$")){
+			return false;
+		}
+		return true;
+	}
+
 	public void DER(String recID) throws RuntimeException
 	{
-		if(records.isEmpty())	
-			throw new RuntimeException("No more records to delete");
-		else
+		// if(records.isEmpty())	
+			// throw new RuntimeException("No more records to delete");
+		// else
+		if(!validId(recID)){
+			System.out.println("Invalid recordID");
+			return;
+		}
+		if(records.get(recID) != null){
 			records.remove(recID);
 			numberOfRecords--;
+			System.out.println("OK");
+		} else {
+			System.out.println("RecordID not found");
+		}
 	}
 	public Record RER(String recID)
 	{
+			if(!validId(recID)){
+				System.out.println("Invalid recordID");
+				return null;
+			}
+			if(records.get(recID) == null){
+				System.out.println("RecordID not found");
+				return null;
+			}
 			return records.get(recID);
 	}
 	public void EDR(String recID, Record updatedRecord)
 	{
-		if(records.get(recID) != null){
-			Record r = records.get(recID);
-			if(!updatedRecord.getSurname().isEmpty()){
-				r.setSurname(updatedRecord.getSurname());
-			}
-			if(!updatedRecord.getGivenName().isEmpty()){
-				r.setGivenName(updatedRecord.getGivenName());
-			}
-			if(!updatedRecord.getPersonalEmail().isEmpty()){
-				r.setPersonalEmail(updatedRecord.getPersonalEmail());
-			}
-			if(!updatedRecord.getWorkEmail().isEmpty()){
-				r.setWorkEmail(updatedRecord.getWorkEmail());
-			}
-			if(!updatedRecord.getPersonalPhone().isEmpty()){
-				r.setPersonalPhone(updatedRecord.getPersonalPhone());
-			}
-			if(!updatedRecord.getWorkPhone().isEmpty()){
-				r.setWorkPhone(updatedRecord.getWorkPhone());
-			}
-			if(!updatedRecord.getStreetAddress().isEmpty()){
-				r.setStreetAddress(updatedRecord.getStreetAddress());
-			}
-			if(!updatedRecord.getCity().isEmpty()){
-				r.setCity(updatedRecord.getCity());
-			}
-			if(!updatedRecord.getState().isEmpty()){
-				r.setState(updatedRecord.getState());
-			}
-			if(!updatedRecord.getCountry().isEmpty()){
-				r.setCountry(updatedRecord.getCountry());
-			}
-			if(!updatedRecord.getPostalCode().isEmpty()){
-				r.setPostalCode(updatedRecord.getPostalCode());
-			}
-		} else {
-			System.out.println("RecordID not found");
+		if(!validId(recID)){
+			System.out.println("Invalid recordID");
+			return;
 		}
-
+		if(updatedRecord != null){
+			if(records.get(recID) != null){
+				Record r = records.get(recID);
+				if(!updatedRecord.getSurname().isEmpty()){
+					r.setSurname(updatedRecord.getSurname());
+				}
+				if(!updatedRecord.getGivenName().isEmpty()){
+					r.setGivenName(updatedRecord.getGivenName());
+				}
+				if(!updatedRecord.getPersonalEmail().isEmpty()){
+					r.setPersonalEmail(updatedRecord.getPersonalEmail());
+				}
+				if(!updatedRecord.getWorkEmail().isEmpty()){
+					r.setWorkEmail(updatedRecord.getWorkEmail());
+				}
+				if(!updatedRecord.getPersonalPhone().isEmpty()){
+					r.setPersonalPhone(updatedRecord.getPersonalPhone());
+				}
+				if(!updatedRecord.getWorkPhone().isEmpty()){
+					r.setWorkPhone(updatedRecord.getWorkPhone());
+				}
+				if(!updatedRecord.getStreetAddress().isEmpty()){
+					r.setStreetAddress(updatedRecord.getStreetAddress());
+				}
+				if(!updatedRecord.getCity().isEmpty()){
+					r.setCity(updatedRecord.getCity());
+				}
+				if(!updatedRecord.getState().isEmpty()){
+					r.setState(updatedRecord.getState());
+				}
+				if(!updatedRecord.getCountry().isEmpty()){
+					r.setCountry(updatedRecord.getCountry());
+				}
+				if(!updatedRecord.getPostalCode().isEmpty()){
+					r.setPostalCode(updatedRecord.getPostalCode());
+				}
+				System.out.println("OK");
+			} else {
+				System.out.println("RecordID not found");
+			}
+		}
 	}
 
 	public int getNumberOfRecords(){

@@ -76,6 +76,7 @@ public class Authenticator implements AuthenticatorInterface{
 
 	public void logout(){
 		this.loggedInUser = null;
+		System.out.println("OK");
 	}
 
 	public User getActiveUser(){

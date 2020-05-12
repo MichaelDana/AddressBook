@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.stream.*;
 
 public class Record {
+	private static final int MAX_DATA_FIELD_SIZE = 64;
 	private String mySurname;
 	private String myGivenName;
 	private String myId;
@@ -53,6 +54,10 @@ public class Record {
 		//must have id
 		if(args != null && args.size() > 0){
 			myId = args.remove(0);
+			if(myId.contains("=")){
+				System.out.println("No recordID");
+				return null;
+			}
 		} else {
 			return null;
 		}
@@ -60,6 +65,10 @@ public class Record {
 			if(kvPair.indexOf('=') > 0){
 				String field = kvPair.substring(0, kvPair.indexOf('='));
 				String value = kvPair.substring(kvPair.indexOf('=') + 1);
+				if(!validValue(value)){
+					System.out.println("One or more invalid data fields");
+					return null;
+				}
 				switch (field) {
 				case "SN":
 					mySurname = value;
@@ -96,11 +105,29 @@ public class Record {
 					break;
 				default:
 					// Invalid field
+					System.out.println("One or more invalid record data fields");
+					return null;
 				}
 			}
 		}
 		return new Record(mySurname, myGivenName, myId, myPersonalEmail, myWorkEmail, myPersonalPhone, myWorkPhone,
 				myStreetAddress, myCity, myState, myCountry, myPostalCode);
+	}
+
+	private static boolean validValue(String value){
+		int count = 0;
+		for(char c: value.toCharArray()){
+			if(count > MAX_DATA_FIELD_SIZE){
+				//field too large
+				return false;
+			}
+			if((int)c > 126 || (int)c < 32){
+				//not a readable character
+				return false;
+			}
+			count++;
+		}
+		return true;
 	}
 
 	public String getSurname() {
@@ -200,12 +227,54 @@ public class Record {
 	}
 
 	public String toString() {
-		String recordStr = "----------------------\n" + "Name: " + this.myGivenName + " " + this.mySurname + "\n"
-				+ "Personal Email: " + this.myPersonalEmail + "\n" + "Work Email: " + this.myWorkEmail + "\n"
-				+ "Personal Phone: " + this.myPersonalPhone + "\n" + "Work Phone: " + this.myWorkPhone + "\n"
-				+ "Address: " + this.myStreetAddress + "\n" + "City: " + this.myCity + "\n" + "State/Province: "
-				+ this.myState + "\n" + "Country: " + this.myCountry + "\n" + "Postal Code: " + this.myPostalCode + "\n"
-				+ "----------------------";
+		String recordStr = this.myId + " SN=" + this.mySurname + " PEM=" + this.myPersonalEmail + " WEM=" + this.myWorkEmail + " PPH=" + this.myPersonalPhone +" WPH=" + this.myWorkPhone + " SA=" + this.myStreetAddress + " CITY=" + this.myCity + " STP="
+				+ this.myState + " CTY=" + this.myCountry +" PC=" + this.myPostalCode;
+		return recordStr;
+	}
+
+	public String toStringArgs(List<String> args){
+		String recordStr = myId + " ";
+		for (String field : args) {	
+				switch (field) {
+				case "SN":	
+					recordStr += "SN="+this.mySurname + " ";
+					break;
+				case "GN":
+					recordStr += "GN="+this.myGivenName + " ";
+					break;
+				case "PEM":
+					recordStr += "PEM=" +this.myPersonalEmail + " ";
+					break;
+				case "WEM":
+					recordStr += "WEM" +this.myWorkEmail + " ";
+					break;
+				case "PPH":
+					recordStr += "PPH="+ this.myPersonalPhone + " ";
+					break;
+				case "WPH":
+					recordStr += "WPH="+ this.myWorkPhone + " ";
+					break;
+				case "SA":
+					recordStr += "SA="+this.myStreetAddress + " ";
+					break;
+				case "CITY":
+					recordStr += "CITY=" +this.myCity + " ";
+					break;
+				case "STP":
+					recordStr += "STP=" +this.myState + " ";
+					break;
+				case "CTY":
+					recordStr += "CTY="+this.myCountry + " ";
+					break;
+				case "PC":
+					recordStr += "PC="+this.myPostalCode + " ";
+					break;
+				default:
+					// Invalid field
+					System.out.println("One or more invalid record data fields");
+					return null;
+				}
+			}
 		return recordStr;
 	}
 

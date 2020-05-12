@@ -106,30 +106,57 @@ public class CommandModule {
         );
         //Display audit log
         commands.put("DAL", (args) -> {
-				if(args.size() == 1)
+                if(args.size() == 1){
+                    if(args.get(0).length() > 16){
+                        System.out.println("Invalid userID");
+                        return false;
+                    }
 					auditDatabase.getAuditLog(authenticator, args.get(0));
-				else if(args.size() == 0)
-					auditDatabase.getAuditLog(authenticator);
+                } else if(args.size() == 0){
+                    auditDatabase.getAuditLog(authenticator);
+                }
                 return false;
             }
         );
         //Add record
         commands.put("ADR", (args) -> {
-                addressBook.ADR(Record.createRecordsFromArgs(args));
+                if(!authenticator.getActiveUser().getUserId().equals("admin")){
+                    if(args.size() > 0){
+                        addressBook.ADR(Record.createRecordsFromArgs(args));
+                    } else {
+                        System.out.println("No recordID");
+                    }
+                } else {
+                    System.out.println("Admin not authorized");
+                }
                 return false;
             }
         );
         //Delete Record
         commands.put("DER", (args) -> {
-                addressBook.DER(args.get(0));
+                if(!authenticator.getActiveUser().getUserId().equals("admin")){
+                    if(args.size() > 0){
+                        addressBook.DER(args.get(0));
+                    } else {
+                        System.out.println("No recordID");
+                    }
+                } else {
+                    System.out.println("Admin not authorized");
+                }   
                 return false;
             }
         );
         //Edit Record
         commands.put("EDR", (args) -> {
                 if(!authenticator.getActiveUser().getUserId().equals("admin")){
-                    Record editedRecord = Record.createRecordsFromArgs(args);
-                    addressBook.EDR(editedRecord.getId(), editedRecord);
+                    if(args.size() > 0){
+                        Record editedRecord = Record.createRecordsFromArgs(args);
+                        if(editedRecord != null){
+                            addressBook.EDR(editedRecord.getId(), editedRecord);
+                        }
+                    } else {
+                        System.out.println("No recordID");
+                    }
                 } else {
                     System.out.println("Admin not authorized");
                 }
@@ -138,17 +165,30 @@ public class CommandModule {
         );
         //Read record
         commands.put("RER", (args) -> {
-                if(args.size()==1){
-                    //reading full record
-                    Record r = addressBook.RER(args.get(0));
-                    //Print record out
-                    if(r!=null) {
-                        System.out.println(r.toString());
+                if(!authenticator.getActiveUser().getUserId().equals("admin")){
+                    if(args.size()==1){
+                        //reading full record
+                        Record r = addressBook.RER(args.get(0));
+                        //Print record out
+                        if(r!=null) {
+                            System.out.println(r.toString());
+                            System.out.println("OK");
+                        }
+                    } else if(args.size() > 1) {
+                        //Read field of record
+                        Record r = addressBook.RER(args.remove(0));
+                        if(r!=null) {
+                            String rec = r.toStringArgs(args);
+                            if(rec != null){
+                                System.out.println(rec);
+                                System.out.println("OK");
+                            }
+                        }
                     } else {
-                        System.out.println("Reocrd not found.");
+                        System.out.println("No recordID");
                     }
                 } else {
-                    //Read field of record
+                    System.out.println("Admin not authorized");
                 }
                 return false;
             }
@@ -206,6 +246,42 @@ public class CommandModule {
         ArrayList<String> args = new ArrayList(Arrays.asList(fullCommand.split("\\s+")));
         if(args.size() > 0){ 
             command = args.remove(0);
+        }
+        fullCommand = fullCommand.replace(command, "").trim();
+        if(!fullCommand.isEmpty()){
+            //Take id and put in args by itself
+            args = new ArrayList(Arrays.asList(fullCommand.split("\\s+")));
+            String idPlace = args.get(0);
+            args = new ArrayList(Arrays.asList(idPlace));
+            //if field values pairs, put in args properly
+            String fieldValuePairs = fullCommand.replace(idPlace, "");
+            if(!fieldValuePairs.isEmpty() && fieldValuePairs.contains("=")){
+                String[] pairs = fieldValuePairs.split("=");
+                String fieldName = null;
+                for(int i = 0; i <pairs.length-1;i++){
+                    if(fieldName == null){
+                        String two = pairs[i+1].trim();
+                        String [] spaceSplit = two.split(" ");
+                        fieldName = spaceSplit[spaceSplit.length-1];
+                        args.add(pairs[i].trim() + "=" + pairs[i+1].replace(fieldName, "").trim());
+                    } else {
+                        String two = pairs[i+1].trim();
+                        String [] spaceSplit = two.split(" ");
+                        String oldFieldName = fieldName;
+                        fieldName = spaceSplit[spaceSplit.length-1];
+                        if(i == pairs.length-2){
+                            args.add(oldFieldName + "=" + pairs[i+1].trim());
+                        } else {
+                            args.add(oldFieldName + "=" + pairs[i+1].replace(fieldName, "").trim());
+                        }
+                    }
+                }
+            } else if(!fieldValuePairs.isEmpty()) {
+                ArrayList<String> fields = new ArrayList(Arrays.asList(fieldValuePairs.trim().split("\\s+")));
+                for(String f : fields){
+                    args.add(f);
+                }
+            }
         }
 
         if(commands.containsKey(command)){
